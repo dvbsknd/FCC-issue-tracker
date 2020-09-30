@@ -19,7 +19,7 @@ Development steps are documented here for tracking and articulating progress:
 - ✓ Set up Express with a Hello World (JSON)
 - ✓ Set up ESlint
 - ✓ Set up Nodemon
-- Set up the test framework
+- ✓ Set up the test framework
 - Implement XSS protections with Helmet
 - Add 404 handling for unknown routes
 - Set up a database connection
