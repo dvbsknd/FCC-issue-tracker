@@ -21,7 +21,7 @@ Development steps are documented here for tracking and articulating progress:
 - ✓ Set up Nodemon
 - ✓ Set up the test framework
 - ✓ Add 404 handling for unknown routes
-- Implement XSS protections with Helmet
+- ✓ Implement XSS protection with Helmet
 - Set up a database connection
 - Stub out POST, PUT, GET, DELETE for the `/api/issues` route
 

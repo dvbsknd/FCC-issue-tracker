@@ -2,6 +2,10 @@
 
 const express = require('express');
 const app = express();
+const helmet = require('helmet');
+
+// Set some safe headers
+app.use(helmet());
 
 // Says hello
 app.get('/', (req, res) => {

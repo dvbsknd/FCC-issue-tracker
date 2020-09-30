@@ -39,6 +39,14 @@ describe('server.js', () => {
         done();
       });
   });
+  it('responds with a valid Content-Security-Policy header', (done) => {
+    chai.request(server)
+      .get('/')
+      .end((err, res) => {
+        expect(res).to.have.header('Content-Security-Policy');
+        done();
+      });
+  });
   context('When POSTing to /api/issues/{projectname}', () => {
     let data;
     before((done) => {
