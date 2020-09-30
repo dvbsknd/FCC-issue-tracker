@@ -1,0 +1,28 @@
+{
+  "name": "fcc-issue-tracker",
+  "version": "1.0.0",
+  "description": "A freeCodeCamp project.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "export $(cat .env | xargs) && nodemon server.js",
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvbsknd/FCC-issue-tracker.git"
+  },
+  "keywords": [
+    "freeCodeCamp",
+    "express",
+    "mocha",
+    "chai",
+    "mongodb"
+  ],
+  "author": "@dvbsknd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dvbsknd/FCC-issue-tracker/issues"
+  },
+  "homepage": "https://github.com/dvbsknd/FCC-issue-tracker#readme"
+}

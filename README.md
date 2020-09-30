@@ -12,7 +12,7 @@ Development steps are documented here for tracking and articulating progress:
 
 - ✓ Initialise the repo and set the remote on Github
 - ✓ Add a good README to explain the project goals and set-up
-- Initialise with `npm` and create the `package.json`
+- ✓ Initialise with `npm` and create the `package.json`
 - Exclude `node_modules` and `.env` files from Git
 - Add a `dev` script that allows reading of the `.env` locally
 - Add `devDependencies` like Mocha, Chai, Nodemon and ESLint
