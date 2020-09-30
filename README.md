@@ -6,6 +6,23 @@ This is the solution to a [final challenge](https://www.freecodecamp.org/learn/q
 
 The project depends on a remotely-visible instance of the app to be served to submit the assessment, and something like [REPL.it](https://repl.it/) does a good job of that. You'll also need a publicly accessible Mongo database (hosted somewhere like [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)) to store data/state for the API.
 
+## Goals/Todo
+
+Development steps are documented here for tracking and articulating progress:
+
+- ✓ Initialise the repo and set the remote on Github
+- ✓ Add a good README to explain the project goals and set-up
+- Initialise with `npm` and create the `package.json`
+- Exclude `node_modules` and `.env` files from Git
+- Add a `dev` script that allows reading of the `.env` locally
+- Add `devDependencies` like Mocha, Chai, Nodemon and ESLint
+- Set up the test framework
+- Set up Express with a (tested) Hello World (JSON)
+- Implement XSS protections with Helmet
+- Add 404 handling for unknown routes
+- Set up a database connection
+- Stub out POST, PUT, GET, DELETE for the `/api/issues` route
+
 ## Local Development
 
 You'll need an `.env` file with:
