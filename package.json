@@ -27,5 +27,8 @@
   "homepage": "https://github.com/dvbsknd/FCC-issue-tracker#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.10.0"
   }
 }
