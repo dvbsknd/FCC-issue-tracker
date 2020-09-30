@@ -3,7 +3,7 @@
 const express = require('express');
 const app = express();
 
-// Says hellop
+// Says hello
 app.get('/', (req, res) => {
   res.json({ message: 'Hello, World.' });
 });
