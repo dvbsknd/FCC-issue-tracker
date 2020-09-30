@@ -17,7 +17,7 @@ const testIssue = {
 const testIssueKeys = Object.keys(testIssue);
 
 describe('server.js', () => {
-  it('says hello', (done) => {
+  it('says hello when GETting /', (done) => {
     chai.request(server)
       .get('/')
       .end((err, res) => {
@@ -25,6 +25,17 @@ describe('server.js', () => {
         expect(res).to.have.status(200);
         expect(res).to.be.json;
         expect(res.body).to.have.property('message').that.equals('Hello, World.');
+        done();
+      });
+  });
+  it('gives a 404 and a JSON error when accesing an unknown route', (done) => {
+    chai.request(server)
+      .post('/random')
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(404);
+        expect(res).to.be.json;
+        expect(res.body).to.have.property('error').that.equals('Unknown route');
         done();
       });
   });

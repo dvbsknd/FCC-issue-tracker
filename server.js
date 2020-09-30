@@ -3,6 +3,11 @@
 const express = require('express');
 const app = express();
 
+// Says hellop
+app.get('/', (req, res) => {
+  res.json({ message: 'Hello, World.' });
+});
+
 app.post('/api/issues/:projectName', (req, res) => {
   const testIssue = {
     issue_title: 'Test issue',
@@ -14,11 +19,12 @@ app.post('/api/issues/:projectName', (req, res) => {
   res.json(testIssue);
 });
 
-app.use('/', (req, res) => {
-  res.json({ message: 'Hello, World.' });
+// Handles all unmatched routes
+app.use((req, res) => {
+  res.status(404).json({ error: 'Unknown route' });
 });
 
-const listener = app.listen(process.env.PORT || 3000, () => {
+const listener = app.listen(process.env.PORT || 3001, () => {
   console.log("Listening on port", listener.address().port);
 });
 
