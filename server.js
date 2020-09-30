@@ -4,8 +4,9 @@ const express = require('express');
 const app = express();
 const helmet = require('helmet');
 
-// Set some safe headers
+// Common middleware
 app.use(helmet());
+app.use(express.urlencoded());
 
 // Says hello
 app.get('/', (req, res) => {
@@ -13,14 +14,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/issues/:projectName', (req, res) => {
-  const testIssue = {
-    issue_title: 'Test issue',
-    issue_text: 'This is a test issue',
-    created_by: 'Mocha',
-    assigned_to: 'Mocha',
-    status_text: 'New'
-  };
-  res.json(testIssue);
+  res.json(req.body);
 });
 
 // Handles all unmatched routes
