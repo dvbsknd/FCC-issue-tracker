@@ -18,6 +18,7 @@ Development steps are documented here for tracking and articulating progress:
 - ✓ Exclude `node_modules` and `.env` files from Git
 - ✓ Set up Express with a Hello World (JSON)
 - ✓ Set up ESlint
+- ✓ Set up Nodemon
 - Set up the test framework
 - Implement XSS protections with Helmet
 - Add 404 handling for unknown routes
