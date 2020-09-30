@@ -16,9 +16,9 @@ Development steps are documented here for tracking and articulating progress:
 - ✓ Add a `dev` script that allows reading of the `.env` locally
 - ✓ Add the `.env` file
 - ✓ Exclude `node_modules` and `.env` files from Git
+- ✓ Set up Express with a Hello World (JSON)
 - Add `devDependencies` like Mocha, Chai, Nodemon and ESLint
 - Set up the test framework
-- Set up Express with a (tested) Hello World (JSON)
 - Implement XSS protections with Helmet
 - Add 404 handling for unknown routes
 - Set up a database connection
