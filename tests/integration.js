@@ -28,6 +28,14 @@ describe('server.js', () => {
         done();
       });
   });
+  it('responds with a valid Content-Security-Policy header', (done) => {
+    chai.request(server)
+      .get('/')
+      .end((err, res) => {
+        expect(res).to.have.header('Content-Security-Policy');
+        done();
+      });
+  });
   it('gives a 404 and a JSON error when accesing an unknown route', (done) => {
     chai.request(server)
       .post('/random')
@@ -36,14 +44,6 @@ describe('server.js', () => {
         expect(res).to.have.status(404);
         expect(res).to.be.json;
         expect(res.body).to.have.property('error').that.equals('Unknown route');
-        done();
-      });
-  });
-  it('responds with a valid Content-Security-Policy header', (done) => {
-    chai.request(server)
-      .get('/')
-      .end((err, res) => {
-        expect(res).to.have.header('Content-Security-Policy');
         done();
       });
   });

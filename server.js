@@ -3,19 +3,18 @@
 const express = require('express');
 const app = express();
 const helmet = require('helmet');
+const api = require('./routes/api');
 
 // Common middleware
 app.use(helmet());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 // Says hello
 app.get('/', (req, res) => {
   res.json({ message: 'Hello, World.' });
 });
 
-app.post('/api/issues/:projectName', (req, res) => {
-  res.json(req.body);
-});
+app.use('/api', api);
 
 // Handles all unmatched routes
 app.use((req, res) => {
