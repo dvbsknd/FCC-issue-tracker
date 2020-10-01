@@ -92,10 +92,10 @@ describe('server.js', () => {
           }
         });
     });
-    it('Returns an error if required fields are not supplied', (done) => {
+    it('Returns an JSON error if required fields are not supplied', (done) => {
       expect(data).to.have.status(400);
       expect(data).to.be.json;
-      expect(data.body).to.have.property('error').that.equals('Missing required fields');
+      expect(data.body).to.have.property('error').that.equals('Invalid issue data provided');
       done();
     });
   });
