@@ -17,7 +17,7 @@ const testIssue = {
 const testIssueKeys = Object.keys(testIssue);
 
 describe('server.js', () => {
-  it('says hello when GETting /', (done) => {
+  it('Says hello when GETting /', (done) => {
     chai.request(server)
       .get('/')
       .end((err, res) => {
@@ -28,7 +28,7 @@ describe('server.js', () => {
         done();
       });
   });
-  it('responds with a valid Content-Security-Policy header', (done) => {
+  it('Responds with a valid Content-Security-Policy header', (done) => {
     chai.request(server)
       .get('/')
       .end((err, res) => {
@@ -36,7 +36,7 @@ describe('server.js', () => {
         done();
       });
   });
-  it('gives a 404 and a JSON error when accesing an unknown route', (done) => {
+  it('Gives a 404 and a JSON error when accesing an unknown route', (done) => {
     chai.request(server)
       .post('/random')
       .end((err, res) => {
@@ -47,7 +47,7 @@ describe('server.js', () => {
         done();
       });
   });
-  context('When POSTing to /api/issues/{projectname}', () => {
+  context('When POSTing valid data to /api/issues/{projectname}', () => {
     let data;
     before((done) => {
       chai.request(server)
@@ -62,12 +62,36 @@ describe('server.js', () => {
           }
         });
     });
-    it('accepts form data conforming to the expected type', (done) => {
+    it('Returns a JSON object with keys/values matching what was supplied', (done) => {
       expect(data).to.have.status(200);
       expect(data).to.be.json;
       testIssueKeys.forEach((key) => {
         expect(data.body).to.have.property(key).that.equals(testIssue[key]);
       });
+      done();
+    });
+  });
+  context('When POSTing incomplete data to /api/issues/{projectname}', () => {
+    let data;
+    const invalidIssue = Object.assign({}, testIssue);
+    delete invalidIssue.created_by;
+    before((done) => {
+      chai.request(server)
+        .post('/api/issues/test-project')
+        .type('form')
+        .send(invalidIssue)
+        .end((err, res) => {
+          if (err) done(err);
+          else {
+            data = res;
+            done();
+          }
+        });
+    });
+    it('Returns an error if required fields are not supplied', (done) => {
+      expect(data).to.have.status(400);
+      expect(data).to.be.json;
+      expect(data.body).to.have.property('error').that.equals('Missing required fields');
       done();
     });
   });
