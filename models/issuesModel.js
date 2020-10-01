@@ -11,7 +11,7 @@ function Issue () {
   this.data = {};
 }
 
-Issue.prototype.save = function (res) {
+Issue.prototype.save = function (callback) {
   MongoClient.connect(process.env.MONGO_URI, { useUnifiedTopology: true }, (err, client) => {
     assert.equal(null, err);
     const db = client.db(dbName);
@@ -19,7 +19,7 @@ Issue.prototype.save = function (res) {
       assert.equal(null, err);
       assert.equal(1, result.result.ok);
       client.close();
-      res.json(result.ops[0]);
+      callback(null, result.ops[0]);
     });
   });
 };

@@ -2,15 +2,13 @@
 
 const express = require('express');
 const api = express.Router();
-const Issue = require('../models/issues');
+const { createIssue } = require('../controllers/issuesController');
 
 api.post('/issues/:projectName', (req, res) => {
-  const issue = new Issue();
-  if (issue.requiredFields.every(field => req.body[field])) {
-    issue.validFields.forEach(field => issue.data[field] = req.body[field]);
-    issue.save(res);
-  }
-  else res.status(400).json({ error: 'Missing required fields' });
+  createIssue(req.body, (err, data) => {
+    if (err) res.status(400).json({ error: err });
+    else res.json(data);
+  });
 });
 
 module.exports = api;
