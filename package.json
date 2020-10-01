@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "export $(cat .env | xargs) && npx nodemon server.js",
-    "test": "npx mocha tests"
+    "test": "export $(cat .env | xargs) && NODE_ENV=test npx mocha tests"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,8 @@
   "homepage": "https://github.com/dvbsknd/FCC-issue-tracker#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "helmet": "^4.1.1"
+    "helmet": "^4.1.1",
+    "mongodb": "^3.6.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",

@@ -2,6 +2,7 @@
 
 const express = require('express');
 const app = express();
+const port = process.env.NODE_ENV === 'test' ? process.env.PORT_TEST : process.env.PORT;
 const helmet = require('helmet');
 const api = require('./routes/api');
 
@@ -21,7 +22,7 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Unknown route' });
 });
 
-const listener = app.listen(process.env.PORT || 3001, () => {
+const listener = app.listen(port || 3000, () => {
   console.log("Listening on port", listener.address().port);
 });
 

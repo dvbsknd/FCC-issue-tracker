@@ -70,6 +70,10 @@ describe('server.js', () => {
       });
       done();
     });
+    it('Returns an _id from the database evidencing that the item was stored', (done) => {
+      expect(data.body).to.have.property('_id');
+      done();
+    });
   });
   context('When POSTing incomplete data to /api/issues/{projectname}', () => {
     let data;
@@ -92,6 +96,35 @@ describe('server.js', () => {
       expect(data).to.have.status(400);
       expect(data).to.be.json;
       expect(data.body).to.have.property('error').that.equals('Missing required fields');
+      done();
+    });
+  });
+  context('When POSTing unnecesary data to /api/issues/{projectname}', () => {
+    let data;
+    const overweightIssue = Object.assign({ bogus_field: 'Bogus Data' }, testIssue);
+    before((done) => {
+      chai.request(server)
+        .post('/api/issues/test-project')
+        .type('form')
+        .send(overweightIssue)
+        .end((err, res) => {
+          if (err) done(err);
+          else {
+            data = res;
+            done();
+          }
+        });
+    });
+    it('Ignores fields which are unexpected', (done) => {
+      expect(data).to.have.status(200);
+      expect(data).to.be.json;
+      testIssueKeys.forEach((key) => {
+        expect(data.body).to.have.property(key).that.equals(testIssue[key]);
+      });
+      done();
+    });
+    it('Returns an _id from the database evidencing that the item was stored', (done) => {
+      expect(data.body).to.have.property('_id');
       done();
     });
   });
