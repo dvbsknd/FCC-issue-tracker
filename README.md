@@ -23,8 +23,12 @@ Development steps are documented here for tracking and articulating progress:
 - ✓ Add 404 handling for unknown routes
 - ✓ Implement XSS protection with Helmet
 - ✓ Set-up a Router for the API
-- Set up a database connection
-- Stub out POST, PUT, GET, DELETE for the `/api/issues` route
+- ✓ Set up a database connection
+- ✓ Stub out the POST endpoint for the `/api/issues` route
+- Add a proper Model for Issues
+- Stub out the PUT endpoint for the `/api/issues` route
+- Stub out the GET endpoint for the `/api/issues` route
+- Stub out the DELETE endpoint for the `/api/issues` route
 
 ## Local Development
 
