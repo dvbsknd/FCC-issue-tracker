@@ -30,6 +30,7 @@ Development steps are documented here for tracking and articulating progress:
 - ✓ Split the repo into `client` and `api`.
 - ✓ Try and add some tests for the front-end code
 - ✓ Mock-up the front-end rendering of an issue with Bootstrap
+- Try combining the api and root routes and serving JSON/HTML based on a header
 - Stub out the PUT endpoint for the `/api/issues` route
 - Stub out the GET endpoint for the `/api/issues` route
 - Stub out the DELETE endpoint for the `/api/issues` route

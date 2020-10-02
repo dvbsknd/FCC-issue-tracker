@@ -13,6 +13,19 @@ function Issue (data) {
   } else throw new Error('Invalid issue data provided');
 }
 
+Issue.list = function (callback) {
+  MongoClient.connect(process.env.MONGO_URI, { useUnifiedTopology: true }, (err, client) => {
+    assert.equal(null, err);
+    const db = client.db(dbName);
+    db.collection('issues').find({}).toArray((err, result) => {
+      assert.equal(null, err);
+      assert.ok(result);
+      client.close();
+      callback(null, result);
+    });
+  });
+};
+
 Issue.prototype.save = function (callback) {
   MongoClient.connect(process.env.MONGO_URI, { useUnifiedTopology: true }, (err, client) => {
     assert.equal(null, err);

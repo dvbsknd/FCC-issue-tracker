@@ -10,7 +10,9 @@
     </header>
 
     <main>
-      <%- include('./partials/issueList'); %>
+      <% issues.forEach(function(issue) { %>
+      <%- include('./partials/issue', { issue }); %>
+      <% }); %>
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-issue">
         Add Issue...
@@ -54,7 +56,7 @@
       </div>
     </main>
 
-    <footer>
+    <footer class="mt-5">
       <%- include('./partials/footer'); %>
     </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

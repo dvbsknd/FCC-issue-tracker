@@ -2,10 +2,14 @@
 
 const express = require('express');
 const client = express.Router();
+const { listIssues } = require('../api/controllers/issuesController');
 
 // Index page
 client.get('/', (req, res) => {
-    res.render('index');
+  listIssues((error, issues) => {
+    if (error) res.render('index', { error });
+    res.render('index', { issues });
+  });
 });
 
 // Handles all unmatched routes

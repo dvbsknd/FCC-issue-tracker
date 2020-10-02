@@ -17,6 +17,7 @@ global.document = mockDocument;
 const client = require('../client/public/site.js');
 
 describe('Client (Browser)', () => {
+  it('Renders a list of all issues on the home page');
   it('Attaches an event listener to the form submit button', () => {
     const button = client.main();
     expect(button).to.have.property('id').that.equals('btn-add');

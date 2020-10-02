@@ -12,3 +12,13 @@ module.exports.createIssue = (data, callback) => {
     callback(err.message);
   }
 }
+
+module.exports.listIssues = (callback) => {
+  try {
+    Issue.list((err, data) => {
+      callback(null, data);
+    });
+  } catch(err) {
+    callback(err.message);
+  }
+}

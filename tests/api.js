@@ -98,4 +98,12 @@ describe('API', () => {
       done();
     });
   });
+  context('When GETting a list of all issues from /api/issues/', () => {
+    it('Should return an array of issues with valid fields');
+    it('Should return issues for all projects');
+  });
+  context('When GETting a list of all issues from /api/issues/{projectname}', () => {
+    it('Should return an array of issues with valid fields');
+    it('Should return issues for the specified project only');
+  });
 });

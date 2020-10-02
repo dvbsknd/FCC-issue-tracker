@@ -1,7 +1,7 @@
 <div class="card border-dark mb-3">
   <div class="card-header">
     <p class="float-left mt-1 mb-1">
-    Issue #1234
+    <%= issue._id %>
     </p>
     <div class="float-right">
       <a href="#" class="btn btn-link">Delete</a>
@@ -11,18 +11,18 @@
   <div class="card-body">
     <div class="row">
       <div class="col">
-        <h5 class="card-title">Issue Title</h5>
-        <p class="card-text">Issue description </p>
+        <h5 class="card-title"><%= issue.issue_title %></h5>
+        <p class="card-text"><%= issue.issue_text %></p>
       </div>
       <div class="col-3 card bg-light border-light mr-3">
         <div class="card-body">
           <dl class="">
             <dt>Created</dt>
-            <dd>Dave Baskind</dd>
+            <dd><%= issue.created_by %></dd>
             <dt>Assigned</dt>
-            <dd>Dave Baskind</dd>
+            <dd><%= issue.assigned_to %></dd>
             <dt>Status</dt>
-            <dd><span class="badge badge-success">Open</span></dd>
+            <dd><span class="badge badge-success"><%= issue.status_text %></span></dd>
           </dl>
         </div>
       </div>
