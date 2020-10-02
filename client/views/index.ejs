@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <%- include('./partials/head'); %>
@@ -10,26 +10,58 @@
     </header>
 
     <main>
-      <form id="issue-form" class="m-3">
-        <dl class="row">
-          <dt class="col-sm-3"><label for="issue_title">Title</label></dt>
-          <dd class="col-sm-9"><input type="text" name="issue_title" /></dd>
-          <dt class="col-sm-3"><label for="issue_text">Details</label></dt>
-          <dd class="col-sm-9"><input type="text" name="issue_text" /></dd>
-          <dt class="col-sm-3"><label for="created_by">Created By</label></dt>
-          <dd class="col-sm-9"><input type="text" name="created_by" /></dd>
-          <dt class="col-sm-3"><label for="assigned_to">Assigned To</label></dt>
-          <dd class="col-sm-9"><input type="text" name="assigned_to" /></dd>
-          <dt class="col-sm-3"><label for="status_text">Status</label></dt>
-          <dd class="col-sm-9"><input type="text" name="status_text" /></dd>
-        </dl>
-        <button type="submit" class="btn btn-primary" id="btn-add">Add</button>
-      </form>
+      <%- include('./partials/issueList'); %>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-issue">
+        Add Issue...
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="add-issue" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-title">New Issue</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="issue-form">
+                <div class="form-group">
+                  <label for="issue_title">Title</label><input class="form-control" type="text" name="issue_title">
+                </div>
+                <div class="form-group">
+                  <label for="issue_text">Details</label><input class="form-control" type="text" name="issue_text">
+                </div>
+                <div class="form-group">
+                  <label for="created_by">Created By</label><input class="form-control" type="text" name="created_by">
+                </div>
+                <div class="form-group">
+                  <label for="assigned_to">Assigned To</label><input class="form-control" type="text" name="assigned_to">
+                </div>
+                <div class="form-group">
+                  <label for="status_text">Status</label><input class="form-control" type="text" name="status_text">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="btn-add">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer>
       <%- include('./partials/footer'); %>
     </footer>
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>

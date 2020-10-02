@@ -1,14 +1,12 @@
 'use strict';
-function main(e, ctx) {
-  // Allows passing of a context manually for testing
-  if (!ctx) ctx = document;
-  const button = ctx.getElementById('btn-add');
+function main() {
+  const button = document.getElementById('btn-add');
   button.addEventListener('click', handleClick);
   return button;
 }
 function handleClick(e) {
   e.preventDefault();
-  const data = captureInputs();
+  const data = captureInputs(document.getElementById('issue-form'));
   const req = new XMLHttpRequest();
   req.addEventListener('load', handleRequest);
   req.addEventListener('error', handleError);
@@ -25,9 +23,9 @@ function handleError(err) {
   if (!err) err = 'There was an error.';
   flashMessage(err, 'danger');
 }
-function captureInputs () {
-  const inputs = document.getElementById('issue-form')
-    .getElementsByTagName('input');
+
+function captureInputs (form) {
+  const inputs = form.getElementsByTagName('input');
 
   // Turn the data into an array of URL-encoded key/value pairs.
   const pairs = [];
@@ -40,6 +38,7 @@ function captureInputs () {
   const data = pairs.join( '&' ).replace( /%20/g, '+' );
   return data;
 }
+
 function flashMessage (message, type) {
   const display = document.createElement('div').appendChild(document.createElement('pre'));
   display.setAttribute('class', `alert alert-${type}`);
@@ -47,13 +46,7 @@ function flashMessage (message, type) {
   document.getElementById('issue-form').after(display);
 }
 
-/**
- * Presence of these objects needs to be checked to support
- * unit testing in a Node environment 
- */
-if (typeof document !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', main);
-}
+document.addEventListener('DOMContentLoaded', main);
 if (typeof module !== 'undefined') { 
-  module.exports = { main };
+  module.exports = { main, captureInputs };
 }

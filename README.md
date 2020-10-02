@@ -27,6 +27,9 @@ Development steps are documented here for tracking and articulating progress:
 - ✓ Stub out the POST endpoint for the `/api/issues` route
 - ✓ Implement a proper MVC pattern with callbacks
 - ✓ Set-up a basic front-end
+- ✓ Split the repo into `client` and `api`.
+- ✓ Try and add some tests for the front-end code
+- ✓ Mock-up the front-end rendering of an issue with Bootstrap
 - Stub out the PUT endpoint for the `/api/issues` route
 - Stub out the GET endpoint for the `/api/issues` route
 - Stub out the DELETE endpoint for the `/api/issues` route
@@ -50,3 +53,4 @@ Notable packages and concepts include:
 1. [Helmet](https://www.npmjs.com/package/helmet) and [CORS](https://www.npmjs.com/package/cors) for setting appropriate headers
 1. [Nodemon](https://www.npmjs.com/package/nodemon) for running a local dev server with hot-reloading
 1. [ESLint](https://www.npmjs.com/package/eslint) for code-checking
+1. [Bootstrap](https://getbootstrap.com/docs/4.0/) for front-end components

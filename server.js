@@ -9,6 +9,12 @@ const client = require('./client');
 
 // Common middleware
 app.use(helmet());
+app.use(helmet.contentSecurityPolicy({
+  directives:{
+    defaultSrc:["'self'"],
+    scriptSrc:["'self'",'code.jquery.com','maxcdn.bootstrapcdn.com','cdnjs.cloudflare.com'],
+    styleSrc:["'self'",'maxcdn.bootstrapcdn.com'],
+    fontSrc:["'self'",'maxcdn.bootstrapcdn.com']}}));
 app.use(express.urlencoded({ extended: true }));
 
 // View engine (app-wide)
