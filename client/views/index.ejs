@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+  <body class="container mt-5">
+
+    <header>
+      <%- include('./partials/header'); %>
+    </header>
+
+    <main>
+      <form id="issue-form" class="m-3">
+        <dl class="row">
+          <dt class="col-sm-3"><label for="issue_title">Title</label></dt>
+          <dd class="col-sm-9"><input type="text" name="issue_title" /></dd>
+          <dt class="col-sm-3"><label for="issue_text">Details</label></dt>
+          <dd class="col-sm-9"><input type="text" name="issue_text" /></dd>
+          <dt class="col-sm-3"><label for="created_by">Created By</label></dt>
+          <dd class="col-sm-9"><input type="text" name="created_by" /></dd>
+          <dt class="col-sm-3"><label for="assigned_to">Assigned To</label></dt>
+          <dd class="col-sm-9"><input type="text" name="assigned_to" /></dd>
+          <dt class="col-sm-3"><label for="status_text">Status</label></dt>
+          <dd class="col-sm-9"><input type="text" name="status_text" /></dd>
+        </dl>
+        <button type="submit" class="btn btn-primary" id="btn-add">Add</button>
+      </form>
+    </main>
+
+    <footer>
+      <%- include('./partials/footer'); %>
+    </footer>
+
+  </body>
+</html>

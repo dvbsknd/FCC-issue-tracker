@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/dvbsknd/FCC-issue-tracker#readme",
   "dependencies": {
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
     "helmet": "^4.1.1",
     "mongodb": "^3.6.2"
@@ -33,7 +34,9 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "cheerio": "^1.0.0-rc.3",
     "eslint": "^7.10.0",
+    "eslint-plugin-ejs": "0.0.2",
     "mocha": "^8.1.3",
     "nodemon": "^2.0.4"
   }

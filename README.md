@@ -25,7 +25,8 @@ Development steps are documented here for tracking and articulating progress:
 - ✓ Set-up a Router for the API
 - ✓ Set up a database connection
 - ✓ Stub out the POST endpoint for the `/api/issues` route
-- ✓ Implement a proper MVC patter with callbacks
+- ✓ Implement a proper MVC pattern with callbacks
+- ✓ Set-up a basic front-end
 - Stub out the PUT endpoint for the `/api/issues` route
 - Stub out the GET endpoint for the `/api/issues` route
 - Stub out the DELETE endpoint for the `/api/issues` route
