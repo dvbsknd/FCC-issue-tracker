@@ -10,13 +10,17 @@
     </header>
 
     <main>
-      <% issues.forEach(function(issue) { %>
+      <% if (err) { %>
+      <p>Error: <%= err %>.</p>
+      <% } else { %>
+      <% data.forEach(function(issue) { %>
       <%- include('./partials/issue', { issue }); %>
       <% }); %>
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-issue">
         Add Issue...
       </button>
+      <% } %>
 
       <!-- Modal -->
       <div class="modal fade" id="add-issue" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
