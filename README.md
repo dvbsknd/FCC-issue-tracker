@@ -33,6 +33,7 @@ Development steps are documented here for tracking and articulating progress:
 - ✓ Render the list of issues on the home page as HTML
 - ✓ Try combining the api and web routes and serving JSON/HTML based on a header
 - Fix the tests that are now failing due to the refactor
+- Implement a modal for editing issues
 - Stub out the PUT endpoint for the `/api/issues` route
 - Stub out the GET endpoint for the `/api/issues` route
 - Stub out the DELETE endpoint for the `/api/issues` route

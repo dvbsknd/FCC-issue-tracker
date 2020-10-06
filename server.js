@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const port = process.env.NODE_ENV === 'test' ? process.env.PORT_TEST : process.env.PORT;
 const helmet = require('helmet');
-const { responseResolver }= require('./middleware');
+const { responseResolver } = require('./middleware');
 const router = require('./routes');
 
 // Common middleware
