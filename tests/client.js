@@ -14,7 +14,7 @@ const mockDocument = {
     }
   }};
 global.document = mockDocument;
-const client = require('../client/public/site.js');
+const client = require('../public/site.js');
 
 describe('Client (Browser)', () => {
   it('Renders a list of all issues on the home page');

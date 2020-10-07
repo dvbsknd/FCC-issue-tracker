@@ -32,8 +32,10 @@ Development steps are documented here for tracking and articulating progress:
 - ✓ Mock-up the front-end rendering of an issue with Bootstrap
 - ✓ Render the list of issues on the home page as HTML
 - ✓ Try combining the api and web routes and serving JSON/HTML based on a header
-- Fix the tests that are now failing due to the refactor
+- ✓ Fix the tests that are now failing due to the refactor
 - Implement a modal for editing issues
+- Put errors in a config/ENUMs so we're not just matching strings
+- Use the default 'Accepts' header for sniffing expected content type
 - Stub out the PUT endpoint for the `/api/issues` route
 - Stub out the GET endpoint for the `/api/issues` route
 - Stub out the DELETE endpoint for the `/api/issues` route

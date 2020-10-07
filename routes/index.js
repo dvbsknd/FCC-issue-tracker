@@ -12,13 +12,13 @@ router.get('/', (req, res) => {
 });
 
 // Project page
-router.get('/:projectName', (req, res) => {
+router.get('/issues/:projectName', (req, res) => {
   listIssues((err, data) => {
     res.resolve(err, data);
   });
 });
 
-router.post('/:projectName', (req, res) => {
+router.post('/issues/:projectName', (req, res) => {
   createIssue(req.body, (err, data) => {
     res.resolve(err, data);
   });
@@ -26,7 +26,7 @@ router.post('/:projectName', (req, res) => {
 
 // Unmatched routes
 router.use((req, res) => {
-  res.resolve('Unmatched route');
+  res.resolve('Unknown route');
 });
 
 module.exports = router;
