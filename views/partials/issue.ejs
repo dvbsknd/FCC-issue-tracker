@@ -5,7 +5,8 @@
     </p>
     <div class="float-right">
       <a href="#" class="btn btn-link">Delete</a>
-      <a href="#" class="btn btn-primary">Edit</a>
+      <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#issue-edit-<%= issue._id %>">Edit</a>
+      <%- include('./form', { issue }) %>
     </div>
   </div>
   <div class="card-body">

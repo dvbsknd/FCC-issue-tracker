@@ -17,47 +17,11 @@
       <%- include('./partials/issue', { issue }); %>
       <% }); %>
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-issue">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#issue-add">
         Add Issue...
       </button>
       <% } %>
-
-      <!-- Modal -->
-      <div class="modal fade" id="add-issue" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modal-title">New Issue</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form id="issue-form">
-                <div class="form-group">
-                  <label for="issue_title">Title</label><input class="form-control" type="text" name="issue_title">
-                </div>
-                <div class="form-group">
-                  <label for="issue_text">Details</label><input class="form-control" type="text" name="issue_text">
-                </div>
-                <div class="form-group">
-                  <label for="created_by">Created By</label><input class="form-control" type="text" name="created_by">
-                </div>
-                <div class="form-group">
-                  <label for="assigned_to">Assigned To</label><input class="form-control" type="text" name="assigned_to">
-                </div>
-                <div class="form-group">
-                  <label for="status_text">Status</label><input class="form-control" type="text" name="status_text">
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" id="btn-add">Add</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <%- include('./partials/form', { issue: null }); %>
     </main>
 
     <footer class="mt-5">
