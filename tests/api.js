@@ -109,4 +109,7 @@ describe('API', () => {
     it('Should return an array of issues with valid fields');
     it('Should return issues for the specified project only');
   });
+  context('When PUTting an updated issue', () => {
+    it('Should return the updated Issue as JSON');
+  });
 });

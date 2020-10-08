@@ -25,9 +25,6 @@ function handleClick (form, action) {
     req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
     req.setRequestHeader( 'API-Request', 'true' );
     req.send(data);
-    document.querySelector('.modal-backdrop').remove();
-    document.querySelector('body').classList.remove('modal-open');
-    form.classList.remove('show');
   }
 }
 

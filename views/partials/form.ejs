@@ -10,6 +10,7 @@
       </div>
       <div class="modal-body">
         <form id="issue-form">
+          <input class="d-none" type="text" name="issue_id" value="<%= issue ? issue._id : '' %>">
           <div class="form-group">
             <label for="issue_title">Title</label>
             <input class="form-control" type="text" name="issue_title" value="<%= issue ? issue.issue_title : '' %>">
@@ -34,7 +35,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary"><%= issue ? 'Save' : 'Add' %></button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal"><%= issue ? 'Save' : 'Add' %></button>
       </div>
     </div>
   </div>
