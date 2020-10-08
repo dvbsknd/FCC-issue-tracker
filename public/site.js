@@ -1,24 +1,55 @@
 'use strict';
+
 function main() {
-  const button = document.getElementById('btn-add');
-  button.addEventListener('click', handleClick);
-  return button;
+  initButtons();
 }
-function handleClick(e) {
-  e.preventDefault();
-  const data = captureInputs(document.getElementById('issue-form'));
-  const req = new XMLHttpRequest();
-  req.addEventListener('load', handleRequest);
-  req.addEventListener('error', handleError);
-  req.open('POST', '/api/issues/test-AJAX');
-  req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
-  req.send(data);
+
+function initButtons() {
+  const forms = document.querySelectorAll('.issue-form');
+  forms.forEach(form => {
+    const button = form.querySelector('.btn-primary');
+    const action = form.className.includes('issue-edit') ? 'update' : 'add';
+    button.addEventListener('click', handleClick(form, action));
+  });
 }
+
+function handleClick (form, action) {
+  const method = setMethod(action);
+  return function eventHandler(e) {
+    const data = captureInputs(form);
+    e.preventDefault();
+    const req = new XMLHttpRequest();
+    req.addEventListener('load', handleRequest);
+    req.addEventListener('error', handleError);
+    req.open(method, '/issues/test-AJAX');
+    req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+    req.setRequestHeader( 'API-Request', 'true' );
+    req.send(data);
+    document.querySelector('.modal-backdrop').remove();
+    document.querySelector('body').classList.remove('modal-open');
+    form.classList.remove('show');
+  }
+}
+
+function setMethod (action) {
+  switch (action) {
+    case 'add':
+      return 'POST';
+    case 'update':
+      return 'PUT';
+    case 'delete':
+      return 'DELETE';
+    default:
+      return 'GET';
+  }
+}
+
 function handleRequest() {
   const res = JSON.parse(this.responseText);
   const messageType = res.error ? 'danger' : 'success';
   flashMessage(JSON.stringify(res, null, 2), messageType);
 }
+
 function handleError(err) {
   if (!err) err = 'There was an error.';
   flashMessage(err, 'danger');
@@ -37,16 +68,15 @@ function captureInputs (form) {
   // the '+' character; matches the behaviour of browser form submissions.
   const data = pairs.join( '&' ).replace( /%20/g, '+' );
   return data;
+
 }
 
 function flashMessage (message, type) {
   const display = document.createElement('div').appendChild(document.createElement('pre'));
   display.setAttribute('class', `alert alert-${type}`);
   display.appendChild(document.createTextNode(message));
-  document.getElementById('issue-form').after(display);
+  document.querySelector('main').before(display);
 }
 
 document.addEventListener('DOMContentLoaded', main);
-if (typeof module !== 'undefined') { 
-  module.exports = { main, captureInputs };
-}
+if (typeof module !== 'undefined') module.exports = { main, captureInputs };

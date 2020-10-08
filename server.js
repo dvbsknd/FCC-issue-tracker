@@ -26,7 +26,7 @@ app.set('views', __dirname + '/views/');
 app.set('view engine', 'ejs');
 
 // Static assets
-app.use(express.static('client/public'));
+app.use(express.static('public'));
 
 // Client and API Routers
 app.use('/', router);
