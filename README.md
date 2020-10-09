@@ -10,36 +10,36 @@ The project depends on a remotely-visible instance of the app to be served to su
 
 Development steps are documented here for tracking and articulating progress:
 
-✓ Initialise the repo and set the remote on Github
-✓ Add a good README to explain the project goals and set-up
-✓ Initialise with `npm` and create the `package.json`
-✓ Add a `dev` script that allows reading of the `.env` locally
-✓ Add the `.env` file
-✓ Exclude `node_modules` and `.env` files from Git
-✓ Set up Express with a Hello World (JSON)
-✓ Set up ESlint
-✓ Set up Nodemon
-✓ Set up the test framework
-✓ Add 404 handling for unknown routes
-✓ Implement XSS protection with Helmet
-✓ Set-up a Router for the API
-✓ Set up a database connection
-✓ Stub out the POST endpoint for the `/issues` route
-✓ Implement a proper MVC pattern with callbacks
-✓ Set-up a basic front-end
-✓ Split the repo into `client` and `api`.
-✓ Try and add some tests for the front-end code
-✓ Mock-up the front-end rendering of an issue with Bootstrap
-✓ Render the list of issues on the home page as HTML
-✓ Try combining the api and web routes and serving JSON/HTML based on a header
-✓ Fix the tests that are now failing due to the refactor
-✓ Implement a modal for editing issues
-✓ Stub out the PUT endpoint for the `/issues` route
-Implement the `/issues/:projectId` route/handling to associate issues with a project
-Put errors in a config/ENUMs so we're not just matching strings
-Use the default 'Accepts' header for sniffing expected content type
-Stub out the GET endpoint for the `/issues` route
-Stub out the DELETE endpoint for the `/issues` route
+- ✓ Initialise the repo and set the remote on Github
+- ✓ Add a good README to explain the project goals and set-up
+- ✓ Initialise with `npm` and create the `package.json`
+- ✓ Add a `dev` script that allows reading of the `.env` locally
+- ✓ Add the `.env` file
+- ✓ Exclude `node_modules` and `.env` files from Git
+- ✓ Set up Express with a Hello World (JSON)
+- ✓ Set up ESlint
+- ✓ Set up Nodemon
+- ✓ Set up the test framework
+- ✓ Add 404 handling for unknown routes
+- ✓ Implement XSS protection with Helmet
+- ✓ Set-up a Router for the API
+- ✓ Set up a database connection
+- ✓ Stub out the POST endpoint for the `/issues` route
+- ✓ Implement a proper MVC pattern with callbacks
+- ✓ Set-up a basic front-end
+- ✓ Split the repo into `client` and `api`.
+- ✓ Try and add some tests for the front-end code
+- ✓ Mock-up the front-end rendering of an issue with Bootstrap
+- ✓ Render the list of issues on the home page as HTML
+- ✓ Try combining the api and web routes and serving JSON/HTML based on a header
+- ✓ Fix the tests that are now failing due to the refactor
+- ✓ Implement a modal for editing issues
+- ✓ Stub out the PUT endpoint for the `/issues` route
+- Implement the `/issues/:projectId` route/handling to associate issues with a project
+- Put errors in a config/ENUMs so we're not just matching strings
+- Use the default 'Accepts' header for sniffing expected content type
+- Stub out the GET endpoint for the `/issues` route
+- Stub out the DELETE endpoint for the `/issues` route
 
 ## Local Development
 
