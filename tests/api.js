@@ -102,7 +102,30 @@ describe('API', () => {
     });
   });
   context('When GETting a list of all issues from /issues/', () => {
-    it('Should return an array of issues with valid fields');
+    let data;
+    before((done) => {
+      chai.request(server)
+        .get('/issues')
+        .set('API-Request', 'true')
+        .end((err, res) => {
+          if (err) done(err);
+          else {
+            data = res;
+            done();
+          }
+        });
+    });
+    it('Should return a JSON array of issues with valid fields', (done) => {
+      expect(data).to.have.status(200);
+      expect(data).to.be.json;
+      expect(data.body).to.be.a('array');
+      data.body.forEach(issue => {
+        testIssueKeys.forEach(key => {
+          expect(issue).to.have.property(key).that.equals(testIssue[key]);
+        });
+      });
+      done();
+    });
     it('Should return issues for all projects');
   });
   context('When GETting a list of all issues from /issues/{projectname}', () => {
