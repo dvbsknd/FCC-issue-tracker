@@ -25,9 +25,9 @@ module.exports.updateIssue = (data, callback) => {
   }
 }
 
-module.exports.listIssues = (callback) => {
+module.exports.listIssues = (project, callback) => {
   try {
-    Issue.list((err, data) => {
+    Issue.list(project, (err, data) => {
       callback(null, data);
     });
   } catch(err) {

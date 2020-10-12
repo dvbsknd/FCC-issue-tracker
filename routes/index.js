@@ -5,19 +5,23 @@ const router = express.Router();
 const {
   createIssue,
   updateIssue,
-  listIssues } = require('../controllers/issuesController');
+  listIssues
+} = require('../controllers/issuesController');
+const { getProject } = require('../controllers/projectsController');
 
 // Index page
 router.get('/', (req, res) => {
-  listIssues((err, data) => {
+  listIssues(null, (err, data) => {
     res.resolve(err, data);
   });
 });
 
 // Project page
-router.get('/issues/:projectName?', (req, res) => {
-  listIssues((err, data) => {
-    res.resolve(err, data);
+router.get('/:projectName?', (req, res) => {
+  getProject(req.params.projectName, (err, project) => {
+    listIssues(project, (err, data) => {
+      res.resolve(err, data);
+    });
   });
 });
 
