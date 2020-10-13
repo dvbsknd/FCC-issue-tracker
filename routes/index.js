@@ -7,7 +7,6 @@ const {
   updateIssue,
   listIssues
 } = require('../controllers/issuesController');
-const { getProject } = require('../controllers/projectsController');
 
 // Index page
 router.get('/', (req, res) => {
@@ -18,15 +17,13 @@ router.get('/', (req, res) => {
 
 // Project page
 router.get('/:projectName?', (req, res) => {
-  getProject(req.params.projectName, (err, project) => {
-    listIssues(project, (err, data) => {
-      res.resolve(err, data);
-    });
+  listIssues(req.params.projectName, (err, data) => {
+    res.resolve(err, data);
   });
 });
 
-router.post('/issues/:projectName', (req, res) => {
-  createIssue(req.body, (err, data) => {
+router.post('/:projectName', (req, res) => {
+  createIssue(req.params.projectName, req.body, (err, data) => {
     res.resolve(err, data);
   });
 });

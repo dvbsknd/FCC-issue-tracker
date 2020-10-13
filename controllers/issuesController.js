@@ -1,12 +1,16 @@
 'use strict';
 
 const Issue = require('../models/issuesModel.js');
+const Project = require('../controllers/projectsController.js');
 
-module.exports.createIssue = (data, callback) => {
+module.exports.createIssue = (projectName, issueData, callback) => {
   try {
-    const issue = new Issue(data);
-    issue.save((err, data) => {
-      callback(null, data);
+    Project.getProject(projectName, (err, project) => {
+      issueData.project_id = project.value._id;
+      const issue = new Issue(issueData);
+      issue.save((err, doc) => {
+        callback(null, doc);
+      });
     });
   } catch(err) {
     callback(err.message);
@@ -25,10 +29,12 @@ module.exports.updateIssue = (data, callback) => {
   }
 }
 
-module.exports.listIssues = (project, callback) => {
+module.exports.listIssues = (projectName, callback) => {
   try {
-    Issue.list(project, (err, data) => {
-      callback(null, data);
+    Project.getProject(projectName, (err, project) => {
+      Issue.list(project, (err, data) => {
+        callback(null, data);
+      });
     });
   } catch(err) {
     callback(err.message);

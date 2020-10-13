@@ -6,22 +6,25 @@ const dbName = process.env.NODE_ENV === 'test' ? process.env.MONGO_DATABASE_TEST
 const assert = require('assert');
 
 function Issue (data) {
-  const requiredFields = ['issue_title', 'issue_text', 'created_by'];
+  const requiredFields = ['project_id', 'issue_title', 'issue_text', 'created_by'];
   const optionalFields = ['assigned_to', 'status_text'];
   const validFields = requiredFields.concat(optionalFields);
+  if (data.project_id) data.project_id = new ObjectID(data.project_id);
   if (requiredFields.every(field => data[field])) {
     validFields.forEach(field => this[field] = data[field]);
   } else throw new Error('Invalid issue data provided');
 }
 
 Issue.list = function (project, callback) {
+  const filter = project !== null ? { project_id: ObjectID(project.value._id) } : {};
   MongoClient.connect(process.env.MONGO_URI, { useUnifiedTopology: true }, (err, client) => {
     assert.equal(null, err);
     const db = client.db(dbName);
-    db.collection('issues').find({ project_name: project }).toArray((err, result) => {
+    db.collection('issues').find(filter).toArray((err, result) => {
       assert.equal(null, err);
       assert.ok(result);
       client.close();
+      console.log(result);
       callback(null, result);
     });
   });
@@ -66,4 +69,5 @@ Issue.update = function (id, data, callback) {
     });
   });
 };
+
 module.exports = Issue;
