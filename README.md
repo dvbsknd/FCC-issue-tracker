@@ -44,10 +44,11 @@ Development steps are documented here for tracking and articulating progress:
 
 ### Todo
 
+1. Resolve errors for 404 handling
 1. Display project name on individual issues
 1. Put errors in a config/ENUMs so we're not just matching strings
 1. Use the default 'Accepts' header for sniffing expected content type
-1. Stub out the DELETE endpoint for the `/issues` route
+1. Stub out the DELETE endpoint 
 
 ## Local Development
 

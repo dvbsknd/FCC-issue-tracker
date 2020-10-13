@@ -17,11 +17,11 @@ const testIssue = {
 const testIssueKeys = Object.keys(testIssue);
 
 describe('API', () => {
-  context('When POSTing valid data to /issues/{projectname}', () => {
+  context('When POSTing valid data to /{projectname}', () => {
     let data;
     before((done) => {
       chai.request(server)
-        .post('/issues/test-project')
+        .post('/test-project')
         .set('API-Request', 'true')
         .type('form')
         .send(testIssue)
@@ -46,13 +46,13 @@ describe('API', () => {
       done();
     });
   });
-  context('When POSTing incomplete data to /issues/{projectname}', () => {
+  context('When POSTing incomplete data to /{projectname}', () => {
     let data;
     const invalidIssue = Object.assign({}, testIssue);
     delete invalidIssue.created_by;
     before((done) => {
       chai.request(server)
-        .post('/issues/test-project')
+        .post('/test-project')
         .set('API-Request', 'true')
         .type('form')
         .send(invalidIssue)
@@ -71,12 +71,12 @@ describe('API', () => {
       done();
     });
   });
-  context('When POSTing unnecesary data to /issues/{projectname}', () => {
+  context('When POSTing unnecesary data to /{projectname}', () => {
     let data;
     const overweightIssue = Object.assign({ bogus_field: 'Bogus Data' }, testIssue);
     before((done) => {
       chai.request(server)
-        .post('/issues/test-project')
+        .post('/test-project')
         .set('API-Request', 'true')
         .type('form')
         .send(overweightIssue)
@@ -101,11 +101,11 @@ describe('API', () => {
       done();
     });
   });
-  context('When GETting a list of all issues from /issues/', () => {
+  context('When GETting a list of all issues from /', () => {
     let data;
     before((done) => {
       chai.request(server)
-        .get('/issues')
+        .get('/')
         .set('API-Request', 'true')
         .end((err, res) => {
           if (err) done(err);
@@ -128,7 +128,7 @@ describe('API', () => {
     });
     it('Should return issues for all projects');
   });
-  context('When GETting a list of all issues from /issues/{projectname}', () => {
+  context('When GETting a list of all issues from /{projectname}', () => {
     it('Should return an array of issues with valid fields');
     it('Should return issues for the specified project only');
   });

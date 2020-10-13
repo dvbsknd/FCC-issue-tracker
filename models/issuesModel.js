@@ -24,7 +24,6 @@ Issue.list = function (project, callback) {
       assert.equal(null, err);
       assert.ok(result);
       client.close();
-      console.log(result);
       callback(null, result);
     });
   });
