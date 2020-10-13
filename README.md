@@ -39,10 +39,12 @@ Development steps are documented here for tracking and articulating progress:
 1. Stub out the PUT endpoint for the `/issues` route
 1. Stub out the GET endpoint for the `/issues` route (done along the way)
 1. Add a test for GET
+1. Implement the `/:projectId` route/handling to associate issues with a project
+1. Deprecate the `/issues` subfolder, everything from route
 
 ### Todo
 
-1. Implement the `/issues/:projectId` route/handling to associate issues with a project
+1. Display project name on individual issues
 1. Put errors in a config/ENUMs so we're not just matching strings
 1. Use the default 'Accepts' header for sniffing expected content type
 1. Stub out the DELETE endpoint for the `/issues` route
