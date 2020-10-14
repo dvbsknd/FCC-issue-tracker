@@ -13,8 +13,27 @@ function Project (data) {
   } else throw new Error('Invalid project data provided');
 }
 
-Project.prototype.findOrCreate = function (callback) {
+Project.find = function (projectName, callback) {
+  MongoClient.connect(process.env.MONGO_URI, { useUnifiedTopology: true }, (err, client) => {
+    assert.equal(null, err);
+    const db = client.db(dbName);
+    const projects = db.collection('projects');
+    projects.findOne({ project_name: projectName }, {}, (err, result) => {
+      try {
+        assert.equal(null, err);
+      } catch(err) {
+        callback(err);
+      }
+      client.close();
+      if (!result) callback(new Error('Project not found'));
+      else {
+        callback(null, result);
+      }
+    });
+  });
+};
 
+Project.prototype.findOrCreate = function (callback) {
   MongoClient.connect(process.env.MONGO_URI, { useUnifiedTopology: true }, (err, client) => {
     assert.equal(null, err);
     const db = client.db(dbName);
@@ -24,11 +43,11 @@ Project.prototype.findOrCreate = function (callback) {
         returnOriginal: false,
         returnNewDocument: true
       }, (err, result) => {
-      assert.equal(null, err);
-      assert.ok(result);
-      client.close();
-      callback(null, result);
-    });
+        assert.equal(null, err);
+        assert.ok(result);
+        client.close();
+        callback(null, result);
+      });
 
   });
 };

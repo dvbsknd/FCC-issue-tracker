@@ -35,8 +35,9 @@ describe('Server', () => {
         .get('/random')
         .end((err, res) => {
           expect(err).to.be.null;
+          expect(res).to.be.html;
           expect(res).to.have.status(404);
-          expect(res.text).to.include('Unknown route');
+          expect(res.text).to.include('Project not found');
           done();
         });
     });

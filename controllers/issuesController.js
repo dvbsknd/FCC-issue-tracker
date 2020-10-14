@@ -4,7 +4,7 @@ const Issue = require('../models/issuesModel.js');
 const Project = require('../controllers/projectsController.js');
 
 module.exports.createIssue = (projectName, issueData, callback) => {
-  Project.getProject(projectName, (err, project) => {
+  Project.getOrCreateProject(projectName, (err, project) => {
     issueData.project_id = project.value._id;
     try {
       const issue = new Issue(issueData);
@@ -30,13 +30,13 @@ module.exports.updateIssue = (data, callback) => {
 }
 
 module.exports.listIssues = (projectName, callback) => {
-  try {
-    Project.getProject(projectName, (err, project) => {
+  Project.getProject(projectName, (err, project) => {
+    if (err) callback(err.message);
+    else {
       Issue.list(project, (err, data) => {
-        callback(null, data);
+        if (err) callback(err.message);
+        else callback(null, data);
       });
-    });
-  } catch(err) {
-    callback(err.message);
-  }
+    }
+  });
 }

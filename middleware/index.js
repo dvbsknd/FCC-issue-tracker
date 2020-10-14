@@ -19,6 +19,9 @@ const httpCode = (err) => {
     case 'Unknown route':
       code = 404;
       break;
+    case 'Project not found':
+      code = 404;
+      break;
     case 'Invalid issue data provided':
       code = 400;
       break;

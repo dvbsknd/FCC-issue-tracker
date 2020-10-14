@@ -16,7 +16,7 @@ function Issue (data) {
 }
 
 Issue.list = function (project, callback) {
-  const filter = project !== null ? { project_id: ObjectID(project.value._id) } : {};
+  const filter = project !== null ? { project_id: ObjectID(project._id) } : {};
   MongoClient.connect(process.env.MONGO_URI, { useUnifiedTopology: true }, (err, client) => {
     assert.equal(null, err);
     const db = client.db(dbName);
