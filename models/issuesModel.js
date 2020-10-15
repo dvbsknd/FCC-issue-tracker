@@ -15,13 +15,22 @@ function Issue (data) {
 
 Issue.list = function (project, callback) {
   const filter = project !== null ? { project_id: issuesStore.ObjectID(project._id) } : {};
+  const pipeline = [
+    { $match: filter },
+    { $lookup: { from: 'projects', localField: 'project_id', foreignField: '_id', as: 'project' } },
+    { $unwind: '$project' },
+    { $project: {
+      _id: 1,
+      issue_title: 1,
+      issue_text: 1,
+      created_by: 1,
+      assigned_to: 1,
+      status_text: 1,
+      project: '$project.project_name' }
+    }
+  ];
   issuesStore.connect(db => {
-    db.aggregate([
-      // Filter and aggregation don't appear to be working!
-      { '$match': filter },
-      { '$lookup': { from: 'projects', localField: 'project_id', foreignField: '_id', as: 'project' } },
-      { '$project': { 'issue_title': 1, 'issue_text': 1, 'project.project_name': 1 } }
-      ]).toArray((err, result) => {
+    db.aggregate(pipeline).toArray((err, result) => {
       if (err) callback(err);
       else callback(null, result);
     });
