@@ -32,7 +32,7 @@ describe('Server', () => {
   context('404 Errors', () => {
     it('Returns 404 error for an unknown HTML/client route', (done) => {
       chai.request(server)
-        .get('/random')
+        .get('/random/')
         .end((err, res) => {
           expect(err).to.be.null;
           expect(res).to.be.html;
@@ -43,13 +43,13 @@ describe('Server', () => {
     });
     it('Returns 404 error for an unknown JSON/API route', (done) => {
       chai.request(server)
-        .post('/random')
+        .get('/random/')
         .set('API-Request','true')
         .end((err, res) => {
           expect(err).to.be.null;
           expect(res).to.have.status(404);
           expect(res).to.be.json;
-          expect(res.body.error).to.equal('Unknown route');
+          expect(res.body.error).to.equal('Project not found');
           done();
         });
     });

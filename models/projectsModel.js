@@ -13,7 +13,7 @@ function Project (data) {
 }
 
 Project.find = function (projectName, callback) {
-  projectsStore.connect((db) => {
+  projectsStore.connect(db => {
     db.findOne({ project_name: projectName }, {}, (err, result) => {
       if (err) callback(err);
       else if (!result) callback(new Error('Project not found'));

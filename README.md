@@ -41,13 +41,13 @@ Development steps are documented here for tracking and articulating progress:
 1. Add a test for GET
 1. Implement the `/:projectId` route/handling to associate issues with a project
 1. Deprecate the `/issues` subfolder, everything from route
+1. Try to create a single database object to be used within models
+1. Resolve errors for 404 handling
 
 ### Todo
 
-1. Try to create a single database object to be used within models
-1. Resolve errors for 404 handling
-1. Try to make custom Errors for "not found", "bad data", etc.
 1. Display project name on individual issues
+1. Try to make custom Errors for "not found", "bad data", etc.
 1. Put errors in a config/ENUMs so we're not just matching strings
 1. Use the default 'Accepts' header for sniffing expected content type
 1. Stub out the DELETE endpoint 
