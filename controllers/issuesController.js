@@ -34,6 +34,7 @@ module.exports.listIssues = (projectName, callback) => {
     if (err) callback(err.message);
     else {
       Issue.list(project, (err, data) => {
+        console.log(data[0]);
         if (err) callback(err.message);
         else callback(null, data);
       });

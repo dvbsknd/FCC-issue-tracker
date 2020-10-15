@@ -16,13 +16,12 @@ function Issue (data) {
 Issue.list = function (project, callback) {
   const filter = project !== null ? { project_id: issuesStore.ObjectID(project._id) } : {};
   issuesStore.connect(db => {
-    db.aggregate({
+    db.aggregate([
       // Filter and aggregation don't appear to be working!
-      '$match': filter, 
-      '$lookup': { from: 'projects', localField: 'project_id', foreignField: '_id', as: 'project_name' },
-      '$project': { 'issue_title': 1, 'issue_text': 1, 'project_name': 1 } 
-      }).toArray((err, result) => {
-        console.log(result);
+      { '$match': filter },
+      { '$lookup': { from: 'projects', localField: 'project_id', foreignField: '_id', as: 'project' } },
+      { '$project': { 'issue_title': 1, 'issue_text': 1, 'project.project_name': 1 } }
+      ]).toArray((err, result) => {
       if (err) callback(err);
       else callback(null, result);
     });
