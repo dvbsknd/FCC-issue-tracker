@@ -18,7 +18,6 @@ router.get('/', (req, res) => {
 // Project page
 router.get('/:projectName?', (req, res) => {
   listIssues(req.params.projectName, (err, data) => {
-    console.log(req.params, err, data);
     res.resolve(err, data);
   });
 });

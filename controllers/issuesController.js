@@ -5,7 +5,7 @@ const Project = require('../controllers/projectsController.js');
 
 module.exports.createIssue = (projectName, issueData, callback) => {
   Project.getOrCreateProject(projectName, (err, project) => {
-    issueData.project_id = project.value._id;
+    issueData.project_id = project._id;
     try {
       const issue = new Issue(issueData);
       issue.save((err, doc) => {

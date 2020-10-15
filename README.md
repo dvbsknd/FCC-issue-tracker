@@ -44,7 +44,9 @@ Development steps are documented here for tracking and articulating progress:
 
 ### Todo
 
+1. Try to create a single database object to be used within models
 1. Resolve errors for 404 handling
+1. Try to make custom Errors for "not found", "bad data", etc.
 1. Display project name on individual issues
 1. Put errors in a config/ENUMs so we're not just matching strings
 1. Use the default 'Accepts' header for sniffing expected content type
