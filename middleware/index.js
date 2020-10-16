@@ -23,6 +23,7 @@ const httpCode = (err) => {
       code = 404;
       break;
     case 'Invalid issue data provided':
+    case 'Issue ID required':
       code = 400;
       break;
     default:

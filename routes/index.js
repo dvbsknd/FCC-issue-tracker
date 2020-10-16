@@ -5,7 +5,8 @@ const router = express.Router();
 const {
   createIssue,
   updateIssue,
-  listIssues
+  listIssues,
+  deleteIssue
 } = require('../controllers/issuesController');
 
 // Index page
@@ -33,6 +34,13 @@ router.put('/:projectName', (req, res) => {
     res.resolve(err, data);
   });
 });
+
+router.delete('/', (req, res) => {
+  deleteIssue(req.body.issue_id, (err, data) => {
+    res.resolve(err, data);
+  });
+});
+
 // Unmatched routes
 router.use((req, res) => {
   res.resolve('Unknown route');

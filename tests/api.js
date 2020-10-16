@@ -190,12 +190,59 @@ describe('API', () => {
           }
         });
     });
-    it('Should return a JSON object', () => {
+    it('Should return a JSON object', (done) => {
       expect(data).to.have.status(200);
       expect(data).to.be.json;
+      done();
     });
-    it('Should return the updated Issue', () => {
+    it('Should return the updated Issue', (done) => {
       expect(data.body.issue_title).to.equal('Updated test issue');
+      done();
+    });
+  });
+  context('When DELETE-ing an existing issue', () => {
+    let id;
+    let data;
+    before((done) => {
+      chai.request(server)
+        .get('/')
+        .set('API-Request', 'true')
+        .end((err, res) => {
+          if (err) done(err);
+          else {
+            id = res.body[0]._id;
+            chai.request(server)
+              .delete('/')
+              .set('API-Request', 'true')
+              .type('form')
+              .send({ issue_id: id })
+              .end((err, res) => {
+                if (err) done(err);
+                else {
+                  data = res;
+                  done();
+                }
+              });
+          }
+        });
+    });
+    it('Should confirm that the issue has been deleted', (done) => {
+      expect(data.body).to.include('Deleted');
+      expect(data.body).to.include(id);
+      done();
+    });
+    it('Should not return the deleted issue in the set of all issues', (done) => {
+      chai.request(server)
+        .get('/')
+        .set('API-Request', 'true')
+        .end((err, res) => {
+          if (err) done(err);
+          else {
+            const issues = res.body;
+            issues.forEach(issue => expect(issue._id).not.equal(id));
+            done();
+          }
+        });
     });
   });
 });

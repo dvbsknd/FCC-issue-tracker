@@ -4,7 +4,7 @@
     <a href="/<%= issue.project %>"><%= issue.project %></a>
     </p>
     <div class="float-right">
-      <a href="#" class="btn btn-link">Delete</a>
+      <a href="#" class="btn btn-link btn-delete" data-issue_id="<%= issue._id %>">Delete</a>
       <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#issue-edit-<%= issue._id %>">Edit</a>
       <%- include('./form', { issue }) %>
     </div>

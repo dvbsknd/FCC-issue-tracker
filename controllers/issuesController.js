@@ -43,3 +43,11 @@ module.exports.listIssues = (projectName, callback) => {
     }
   });
 }
+
+module.exports.deleteIssue = (id, callback) => {
+  if (!id) callback(new Error('Issue ID required'));
+  Issue.delete(id, (err, message) => {
+    if (err) callback(err.message);
+    else callback(null, message);
+});
+}

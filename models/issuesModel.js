@@ -46,6 +46,15 @@ Issue.find = function (id, callback) {
   });
 };
 
+Issue.delete = function (id, callback) {
+  issuesStore.connect(db => {
+    db.findOneAndDelete({ _id: issuesStore.ObjectID(id) }, (err, result) => {
+      if (err) callback(err);
+      else callback(null, 'Deleted Issue ' + result.value._id);
+    });
+  });
+};
+
 Issue.prototype.save = function (callback) {
   issuesStore.connect(db => {
     db.insertOne(this, (err, result) => {
