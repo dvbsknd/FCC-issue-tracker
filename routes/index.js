@@ -28,7 +28,7 @@ router.post('/:projectName', (req, res) => {
   });
 });
 
-router.put('/issues/:projectName', (req, res) => {
+router.put('/:projectName', (req, res) => {
   updateIssue(req.body, (err, data) => {
     res.resolve(err, data);
   });

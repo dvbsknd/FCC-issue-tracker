@@ -17,16 +17,19 @@ module.exports.createIssue = (projectName, issueData, callback) => {
   });
 }
 
-module.exports.updateIssue = (data, callback) => {
-  try {
-    Issue.find(data.issue_id, (err, issue) => {
-      Issue.update(issue._id, data, (err, updatedIssue) => {
-        callback(null, updatedIssue);
+module.exports.updateIssue = (issueData, callback) => {
+  Project.getProject(issueData.issue_project, (err, project) => {
+    try {
+      issueData.project_id = project._id;
+      const id = issueData._id;
+      const issue = new Issue(issueData);
+      issue.update(id, (err, doc) => {
+        callback(null, doc);
       });
-    });
-  } catch(err) {
-    callback(err.message);
-  }
+    } catch(err) {
+      callback(err.message);
+    }
+  });
 }
 
 module.exports.listIssues = (projectName, callback) => {

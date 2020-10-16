@@ -55,12 +55,14 @@ Issue.prototype.save = function (callback) {
   });
 };
 
-Issue.update = function (id, data, callback) {
-  const issue_title = data.issue_title;
+Issue.prototype.update = function (id, callback) {
   issuesStore.connect(db => {
-    db.findOneAndUpdate({ _id: issuesStore.ObjectID(id) }, { $set : { issue_title } }, { returnOriginal: false }, (err, result) => {
+    const filter = {
+      _id: issuesStore.ObjectID(id)
+    }
+    db.findOneAndUpdate(filter, { $set : this }, { returnOriginal: false }, (err, result) => {
       if (err) callback(err);
-      else callback(null, result);
+      else callback(null, result.value);
     });
   });
 };

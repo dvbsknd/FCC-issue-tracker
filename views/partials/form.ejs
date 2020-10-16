@@ -1,16 +1,25 @@
 <!-- Modal -->
-<div class="modal fade issue-form issue-<%= issue ? 'edit' : 'add' %>" id="issue-<%= issue ? 'edit-' + issue._id : 'add' %>" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+<div class="modal fade issue-form" id="issue-<%= issue ? 'edit-' + issue._id : 'add' %>" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modal-title"><%= issue ? 'Edit' : 'Add' %> Issue</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="issue-form">
-          <input class="d-none" type="text" name="issue_id" value="<%= issue ? issue._id : '' %>">
+      <form method="<%= issue ? 'PUT' : 'POST' %>">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-title"><%= issue ? 'Edit' : 'Add' %> Issue</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input class="d-none" type="text" name="_id" value="<%= issue ? issue._id : '' %>">
+          <input class="d-none" type="text" name="project_id" value="<%= issue ? issue.project_id : '' %>">
+      <% if (issue && issue.project) { %>
+          <input class="d-none" type="text" name="issue_project" value="<%= issue.project %>">
+      <% } else { %>
+          <div class="form-group">
+            <label for="issue_project">Project</label>
+            <input class="form-control" type="text" name="issue_project" value="<%= issue ? issue.project : '' %>">
+          </div>
+      <% } %>
           <div class="form-group">
             <label for="issue_title">Title</label>
             <input class="form-control" type="text" name="issue_title" value="<%= issue ? issue.issue_title : '' %>">
@@ -31,12 +40,12 @@
             <label for="status_text">Status</label>
             <input class="form-control" type="text" name="status_text" value="<%= issue ? issue.status_text : '' %>">
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal"><%= issue ? 'Save' : 'Add' %></button>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <input type="submit" class="btn btn-primary" value="<%= issue ? 'Save' : 'Add' %>">
+        </div>
+      </form>
     </div>
   </div>
 </div>
