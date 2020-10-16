@@ -1,21 +1,5 @@
 'use strict';
 
-const chai = require('chai');
-const expect = chai.expect;
-const mockDocument = {
-  addEventListener(event, fn) {
-    this.event = event;
-    this.listener = fn;
-  },
-  getElementById(id) {
-    return { 
-      id,
-      addEventListener: document.addEventListener
-    }
-  }};
-global.document = mockDocument;
-const client = require('../public/site.js');
-
 describe('Client (Browser)', () => {
   it('Renders a list of all issues on the home page');
   it('Attaches an event listener to the form submit button');
