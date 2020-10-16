@@ -18,7 +18,7 @@ module.exports.createIssue = (projectName, issueData, callback) => {
 }
 
 module.exports.updateIssue = (issueData, callback) => {
-  Project.getProject(issueData.issue_project, (err, project) => {
+  Project.getProject(issueData.project, (err, project) => {
     try {
       issueData.project_id = project._id;
       const id = issueData._id;

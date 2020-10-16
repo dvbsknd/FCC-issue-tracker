@@ -13,11 +13,11 @@
           <input class="d-none" type="text" name="_id" value="<%= issue ? issue._id : '' %>">
           <input class="d-none" type="text" name="project_id" value="<%= issue ? issue.project_id : '' %>">
       <% if (issue && issue.project) { %>
-          <input class="d-none" type="text" name="issue_project" value="<%= issue.project %>">
+          <input class="d-none" type="text" name="project" value="<%= issue.project %>">
       <% } else { %>
           <div class="form-group">
             <label for="issue_project">Project</label>
-            <input class="form-control" type="text" name="issue_project" value="<%= issue ? issue.project : '' %>">
+            <input class="form-control" type="text" name="project" value="<%= issue ? issue.project : '' %>">
           </div>
       <% } %>
           <div class="form-group">
