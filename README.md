@@ -43,14 +43,14 @@ Development steps are documented here for tracking and articulating progress:
 1. Deprecate the `/issues` subfolder, everything from route
 1. Try to create a single database object to be used within models
 1. Resolve errors for 404 handling
+1. Display project name on individual issues
 
 ### Todo
 
-1. Display project name on individual issues
+1. Stub out the DELETE endpoint 
 1. Try to make custom Errors for "not found", "bad data", etc.
 1. Put errors in a config/ENUMs so we're not just matching strings
 1. Use the default 'Accepts' header for sniffing expected content type
-1. Stub out the DELETE endpoint 
 
 ## Local Development
 
@@ -72,3 +72,11 @@ Notable packages and concepts include:
 1. [Nodemon](https://www.npmjs.com/package/nodemon) for running a local dev server with hot-reloading
 1. [ESLint](https://www.npmjs.com/package/eslint) for code-checking
 1. [Bootstrap](https://getbootstrap.com/docs/4.0/) for front-end components
+
+## Architecture
+
+Admittedly, the architecture of this app is a little strange, but I wanted to explore a few ideas with the structuring of my repo. I tried to implement as "pure" an MVC implementation as possible, with as much separation as possible between the API, front-end rendering logic and the controllers and models. The idea is that you would be able to use the controllers via an Express-powered API (in `/routes`) _or_ in something like a CLI tool. The controllers would be Express-agnostic.
+
+I also wanted to "write my own models" for the data and use the native [MongoDB driver](https://mongodb.github.io/node-mongodb-native/) for Node.js rather than using an ORM like [Mongoose](https://mongoosejs.com/)—mostly just to help me understand how MongoDB and the concept of an ORM actually work. It's not really finished enough so this makes it feel like the separation between routes, controllers and models is a little artificial.
+
+In theory, I should be able to "swap out" MongoDB for another data store like [SQLite](https://www.sqlite.org/index.html) withouth having to touch _anything_ but the `/models`) folder, and I do think that's currently the case.
