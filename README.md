@@ -50,7 +50,6 @@ Development steps are documented here for tracking and articulating progress:
 
 1. Finalise/add tests for client-side JavaScript
 1. Try to make custom Errors for "not found", "bad data", etc.
-1. Put errors in a config/ENUMs so we're not just matching strings
 1. Use the default 'Accepts' header for sniffing expected content type
 
 ## Local Development

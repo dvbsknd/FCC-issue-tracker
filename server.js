@@ -18,7 +18,8 @@ app.use(helmet.contentSecurityPolicy({
 app.use(express.urlencoded({ extended: true }));
 
 // Identify whether this is a web or API request
-// and set the .resolve() method accordingly
+// and set the .resolve() method to be used for
+// responding to clients, accordingly
 app.use(responseResolver);
 
 // View engine (app-wide)

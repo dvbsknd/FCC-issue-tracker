@@ -29,21 +29,11 @@ Issue.list = function (project, callback) {
       project: '$project.project_name' }
     }
   ];
-  issuesStore.connect(db => {
-    db.aggregate(pipeline).toArray((err, result) => {
-      if (err) callback(err);
-      else callback(null, result);
-    });
-  });
+  issuesStore.connect(db => db.aggregate(pipeline).toArray((err, result) => callback(err, result)));
 };
 
 Issue.find = function (id, callback) {
-  issuesStore.connect(db => {
-    db.findOne({ _id: issuesStore.ObjectID(id) }, (err, result) => {
-      if (err) callback(err);
-      else callback(null, result);
-    });
-  });
+  issuesStore.connect(db => db.findOne({ _id: issuesStore.ObjectID(id) }, callback));
 };
 
 Issue.delete = function (id, callback) {
