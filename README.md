@@ -6,6 +6,35 @@ This is the solution to a [final challenge](https://www.freecodecamp.org/learn/q
 
 The project depends on a remotely-visible instance of the app to be served to submit the assessment, and something like [REPL.it](https://repl.it/) does a good job of that. You'll also need a publicly accessible Mongo database (hosted somewhere like [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)) to store data/state for the API.
 
+## Architecture
+
+Admittedly, the architecture of this app is a little strange, but I wanted to explore a few ideas with the structuring of my repo. I tried to implement as "pure" an MVC implementation as possible, with as much separation as possible between the API, front-end rendering logic and the controllers and models. The idea is that you would be able to use the controllers via an Express-powered API (in `/routes`) _or_ in something like a CLI tool. The controllers would be Express-agnostic.
+
+I also wanted to "write my own models" for the data and use the native [MongoDB driver](https://mongodb.github.io/node-mongodb-native/) for Node.js rather than using an ORM like [Mongoose](https://mongoosejs.com/)—mostly just to help me understand how MongoDB and the concept of an ORM actually work. It's not really finished enough so this makes it feel like the separation between routes, controllers and models is a little artificial.
+
+In theory, I should be able to "swap out" MongoDB for another data store like [SQLite](https://www.sqlite.org/index.html) withouth having to touch _anything_ but the `/models`) folder, and I do think that's currently the case.
+
+## Local Development
+
+You'll need an `.env` file with:
+
+1. `PORT`
+1. `MONGO_URI`
+
+The rest is pretty straightforward, with `npm` for package management and `nodemon` for development server. Use `npm run dev` for starting up the local server.
+
+## Dependencies
+
+Notable packages and concepts include:
+
+1. [MongoDB](https://www.npmjs.com/package/mongodb)
+1. [Chai](https://www.npmjs.com/package/chai) with [HTTP](https://www.npmjs.com/package/chai-http) to assert
+1. [Mocha](https://www.npmjs.com/package/mocha) to run tests
+1. [Helmet](https://www.npmjs.com/package/helmet) and [CORS](https://www.npmjs.com/package/cors) for setting appropriate headers
+1. [Nodemon](https://www.npmjs.com/package/nodemon) for running a local dev server with hot-reloading
+1. [ESLint](https://www.npmjs.com/package/eslint) for code-checking
+1. [Bootstrap](https://getbootstrap.com/docs/4.0/) for front-end components
+
 ## Goals/Todo
 
 Development steps are documented here for tracking and articulating progress:
@@ -51,32 +80,3 @@ Development steps are documented here for tracking and articulating progress:
 1. Finalise/add tests for client-side JavaScript
 1. Try to make custom Errors for "not found", "bad data", etc.
 1. Use the default 'Accepts' header for sniffing expected content type
-
-## Local Development
-
-You'll need an `.env` file with:
-
-1. `PORT`
-1. `MONGO_URI`
-
-The rest is pretty straightforward, with `npm` for package management and `nodemon` for development server. Use `npm run dev` for starting up the local server.
-
-## Dependencies
-
-Notable packages and concepts include:
-
-1. [MongoDB](https://www.npmjs.com/package/mongodb)
-1. [Chai](https://www.npmjs.com/package/chai) with [HTTP](https://www.npmjs.com/package/chai-http) to assert
-1. [Mocha](https://www.npmjs.com/package/mocha) to run tests
-1. [Helmet](https://www.npmjs.com/package/helmet) and [CORS](https://www.npmjs.com/package/cors) for setting appropriate headers
-1. [Nodemon](https://www.npmjs.com/package/nodemon) for running a local dev server with hot-reloading
-1. [ESLint](https://www.npmjs.com/package/eslint) for code-checking
-1. [Bootstrap](https://getbootstrap.com/docs/4.0/) for front-end components
-
-## Architecture
-
-Admittedly, the architecture of this app is a little strange, but I wanted to explore a few ideas with the structuring of my repo. I tried to implement as "pure" an MVC implementation as possible, with as much separation as possible between the API, front-end rendering logic and the controllers and models. The idea is that you would be able to use the controllers via an Express-powered API (in `/routes`) _or_ in something like a CLI tool. The controllers would be Express-agnostic.
-
-I also wanted to "write my own models" for the data and use the native [MongoDB driver](https://mongodb.github.io/node-mongodb-native/) for Node.js rather than using an ORM like [Mongoose](https://mongoosejs.com/)—mostly just to help me understand how MongoDB and the concept of an ORM actually work. It's not really finished enough so this makes it feel like the separation between routes, controllers and models is a little artificial.
-
-In theory, I should be able to "swap out" MongoDB for another data store like [SQLite](https://www.sqlite.org/index.html) withouth having to touch _anything_ but the `/models`) folder, and I do think that's currently the case.
